@@ -7,28 +7,25 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.cardview.widget.CardView
-
-class Home : AppCompatActivity() {
-    lateinit var exit:CardView
-    lateinit var findDoctor:CardView
+//143
+class FindDoctor : AppCompatActivity() {
+    lateinit var exit: CardView
+    lateinit var familyPhysician: CardView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
-        exit=findViewById(R.id.cardExit)
-        findDoctor=findViewById(R.id.cardFindDoctor)
+        setContentView(R.layout.activity_find_doctor)
+        exit=findViewById(R.id.cardFDBack)
+        familyPhysician=findViewById(R.id.cardFDFamilyPhysician)
         val sharedpreferences = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE)
         val username = sharedpreferences.getString("username", "31").toString()
-
-        val exit: CardView = findViewById(R.id.cardExit)
         exit.setOnClickListener {
             val editor: SharedPreferences.Editor = sharedpreferences.edit()
             editor.clear()
             editor.apply()
-            startActivity(Intent(this@Home, Login::class.java))
+            startActivity(Intent(this@FindDoctor, Login::class.java))
         }
-        findDoctor.setOnClickListener{
-            startActivity(Intent(this@Home, FindDoctor::class.java))
+        familyPhysician.setOnClickListener{
+            startActivity(Intent(this@FindDoctor, DoctorDetails::class.java))
         }
-
     }
 }

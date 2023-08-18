@@ -25,28 +25,38 @@ class Newuser : AppCompatActivity() {
         button=findViewById(R.id.buttonLogin)
         tv=findViewById(R.id.textViewExistingUser)
         val database = Database(this, "HealthCare", null, 1)
-        button.setOnClickListener({
-            if(name.text.toString().length==0|| pass.text.toString().length==0 || email.text.toString().length==0 || confirmpass.text.toString().length==0){
-                Toast.makeText(this@Newuser,"Please fill all details", Toast.LENGTH_SHORT).show()
-            }else{
-                if(pass.text.toString().compareTo(confirmpass.text.toString())!=0){
-                    Toast.makeText(this@Newuser,"Please match your passwords", Toast.LENGTH_SHORT).show()
-                }else{
-                    if(isValid(pass.text.toString())){
-                        database.register(name.text.toString(),email.text.toString(),pass.text.toString())
-                        Toast.makeText(this@Newuser,"Record Inserted", Toast.LENGTH_SHORT).show()
-                        val i= Intent(this,Login::class.java)
+        button.setOnClickListener {
+            if (name.text.toString().isEmpty() || pass.text.toString().isEmpty() || email.text.toString()
+                    .isEmpty() || confirmpass.text.toString().length == 0) {
+                Toast.makeText(this@Newuser, "Please fill all details", Toast.LENGTH_SHORT).show()
+            } else {
+                if (pass.text.toString().compareTo(confirmpass.text.toString()) != 0) {
+                    Toast.makeText(this@Newuser, "Please match your passwords", Toast.LENGTH_SHORT)
+                        .show()
+                } else {
+                    if (isValid(pass.text.toString())) {
+                        database.register(
+                            name.text.toString(),
+                            email.text.toString(),
+                            pass.text.toString()
+                        )
+                        Toast.makeText(this@Newuser, "Record Inserted", Toast.LENGTH_SHORT).show()
+                        val i = Intent(this, Login::class.java)
                         startActivity(i)
-                    }else{
-                        Toast.makeText(this@Newuser,"Password must contain at least 8 character, having special letter, symbol and digit", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(
+                            this@Newuser,
+                            "Password must contain at least 8 character, having special letter, symbol and digit",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
             }
-        })
-        tv.setOnClickListener({
-            val i= Intent(this,Login::class.java)
+        }
+        tv.setOnClickListener {
+            val i = Intent(this, Login::class.java)
             startActivity(i)
-        })
+        }
     }
     fun isValid(pass: String): Boolean {
         var f1 = false

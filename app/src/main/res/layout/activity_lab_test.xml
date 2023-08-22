@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back1"
-    tools:context=".DoctorDetails">
-
+    android:background="@drawable/back2"
+    tools:context=".LabTest">
     <TextView
         android:id="@+id/textViewDDName"
         android:layout_width="wrap_content"
@@ -26,9 +25,24 @@
         android:id="@+id/textViewDDTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Default Text"
-        android:textColor="@color/white"
+        android:text="Lab Tests and Packages"
+        android:textColor="@color/yellowLight"
         android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDDName"
+        app:layout_constraintVertical_bias="0.069" />
+
+    <TextView
+        android:id="@+id/textViewDDTitle2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Deliver Location: Pune"
+        android:textColor="@color/white"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,17 +61,34 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDDTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewDDTitle"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/buttonDDBack"
+        android:id="@+id/buttonLTGoToCart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/btn_bg"
         android:layout_margin="10dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/btn_bg"
+        android:text="Go To Cart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.136"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listViewLT" />
+
+    <Button
+        android:id="@+id/buttonLDBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/btn_bg"
         android:text="Back"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.904"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listViewLT" />
 </androidx.constraintlayout.widget.ConstraintLayout>

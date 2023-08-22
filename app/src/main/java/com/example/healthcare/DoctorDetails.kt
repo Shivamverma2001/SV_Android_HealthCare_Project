@@ -2,7 +2,6 @@ package com.example.healthcare
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
 import android.widget.SimpleAdapter
@@ -90,7 +89,7 @@ class DoctorDetails : AppCompatActivity() {
             arrayOf("Line1", "Line2", "Line3", "Line4", "lines"),
             intArrayOf(R.id.line_a, R.id.line_b, R.id.line_c, R.id.line_d, R.id.line_e)
         )
-        val lst: ListView = findViewById(R.id.listViewDD)
+        val lst: ListView = findViewById(R.id.listViewLT)
         lst.adapter = simpleAdapter
         lst.setOnItemClickListener { parent, view, position, id ->
             val i = position // Get the clicked item position

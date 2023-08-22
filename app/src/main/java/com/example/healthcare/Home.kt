@@ -11,11 +11,13 @@ import androidx.cardview.widget.CardView
 class Home : AppCompatActivity() {
     lateinit var exit:CardView
     lateinit var findDoctor:CardView
+    lateinit var labTest:CardView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         exit=findViewById(R.id.cardExit)
         findDoctor=findViewById(R.id.cardFindDoctor)
+        labTest=findViewById(R.id.cardLabText)
         val sharedpreferences = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE)
         val username = sharedpreferences.getString("username", "31").toString()
 
@@ -29,6 +31,8 @@ class Home : AppCompatActivity() {
         findDoctor.setOnClickListener{
             startActivity(Intent(this@Home, FindDoctor::class.java))
         }
-
+        labTest.setOnClickListener{
+            startActivity(Intent(this@Home, LabTest::class.java))
+        }
     }
 }

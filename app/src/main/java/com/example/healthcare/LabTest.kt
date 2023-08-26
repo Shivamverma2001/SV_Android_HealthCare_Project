@@ -16,13 +16,12 @@ class LabTest : AppCompatActivity() {
         setContentView(R.layout.activity_lab_test)
         goTo=findViewById(R.id.buttonLTGoToCart)
         back=findViewById(R.id.buttonLDBack)
-        lv=findViewById(R.id.listViewLT)
-        var doctor_Details: Array<Array<String>> = arrayOf()
+        lv=findViewById(R.id.listViewOD)
         val list: ArrayList<HashMap<String, String>> = ArrayList()
         val packages = arrayOf(
             arrayOf("Package 1: Full Body Checkup","","","","999"),
             arrayOf("Package 2: Blood Glucose Fasting","","","","299"),
-            arrayOf("Package 3: COVIO-19 Antibody IgG","","","","899"),
+            arrayOf("Package 3: COVID Antibody IgG","","","","899"),
             arrayOf("Package 4: Thyroid Check","","","","499"),
             arrayOf("Package 5: Immunity Check","","","","699")
         )
@@ -58,7 +57,7 @@ class LabTest : AppCompatActivity() {
             item["Line2"] = packages[i][1] // Change "line2" to "Line2"
             item["Line3"] = packages[i][2] // Change "line3" to "Line3"
             item["Line4"] = packages[i][3] // Change "line4" to "Line4"
-            item["lines"] = "Cons Fees:" + packages[i][4] + "/-" // Change "line5" to "lines"
+            item["lines"] = "Total Cost:" + packages[i][4] + "/-" // Change "line5" to "lines"
             list.add(item)
         }
         val simpleAdapter = SimpleAdapter(
@@ -76,6 +75,9 @@ class LabTest : AppCompatActivity() {
             ii.putExtra("text2", packageDetails[i])
             ii.putExtra("text3", packages[i][4])
             startActivity(ii)
+        }
+        goTo.setOnClickListener{
+            startActivity(Intent(this@LabTest,CardLab::class.java))
         }
     }
 }

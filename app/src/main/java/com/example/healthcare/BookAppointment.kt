@@ -4,14 +4,14 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.TimePicker
+import android.widget.Toast
 import java.util.Calendar
 
 class BookAppointment : AppCompatActivity() {
@@ -25,6 +25,7 @@ class BookAppointment : AppCompatActivity() {
     lateinit var datePickerDialog: DatePickerDialog
     lateinit var timePickerDialog: TimePickerDialog
     lateinit var back:Button
+    lateinit var book:Button
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +35,8 @@ class BookAppointment : AppCompatActivity() {
         add=findViewById(R.id.editTextAppAddress)
         number=findViewById(R.id.editTextRegAppContactNumber)
         fee=findViewById(R.id.editTextRegAppFee)
-        back=findViewById(R.id.buttonAppBack)
+        back=findViewById(R.id.buttonCartAppBack)
+        book=findViewById(R.id.buttonCartAppRegister)
         val bundle: Bundle? = intent.extras
         val title = bundle?.get("text1")
         val fullname = bundle?.get("text2")
@@ -50,17 +52,34 @@ class BookAppointment : AppCompatActivity() {
         add.setText(address.toString())
         number.setText(contactnumber.toString())
         fee.setText(fees.toString())
-        dateButton = findViewById(R.id.buttonAppDate)
+        dateButton = findViewById(R.id.buttonCartAppDate)
         dateButton.setOnClickListener {
             initiatePicker()
         }
-        timeButton = findViewById(R.id.buttonAppTime)
+        timeButton = findViewById(R.id.buttonCartAppTime)
         timeButton.setOnClickListener {
             initiateTimePicker()
         }
         back.setOnClickListener{
-            startActivity(Intent(this@BookAppointment,FindDoctor::class.java))
+            startActivity(Intent(this@BookAppointment,OrderDetails::class.java))
         }
+        book.setOnClickListener {
+            val sharedpreferences = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE)
+            val username = sharedpreferences.getString("username", "").toString()
+            val database = Database(this, "HealthCare", null, 1)
+
+            val feeValue = fee.text.toString().toFloatOrNull()
+            if (database.checkAppointmentExists(username, tv.text.toString() + " => " + name.text.toString(), add.text.toString(), number.text.toString(), dateButton.text.toString(), timeButton.text.toString()) == 1) {
+                Toast.makeText(this, "Appointment already exists", Toast.LENGTH_SHORT).show()
+            } else {
+                if (feeValue != null) {
+                    database.addOrder(username, tv.text.toString() + " => " + name.text.toString(), add.text.toString(), number.text.toString(), 0, dateButton.text.toString(), timeButton.text.toString(), feeValue, "appointment")
+                }
+                Toast.makeText(this, "Appointment is done successfully", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, Home::class.java))
+            }
+        }
+
     }
     private fun initiatePicker() {
         val dateSetListener = DatePickerDialog.OnDateSetListener { datePicker, year, month, dayOfMonth ->

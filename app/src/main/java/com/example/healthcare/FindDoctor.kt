@@ -26,10 +26,7 @@ class FindDoctor : AppCompatActivity() {
         cardiologists=findViewById(R.id.cardFDCardiologists)
         val sharedpreferences = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE)
         exit.setOnClickListener {
-            val editor: SharedPreferences.Editor = sharedpreferences.edit()
-            editor.clear()
-            editor.apply()
-            startActivity(Intent(this@FindDoctor, Login::class.java))
+            startActivity(Intent(this@FindDoctor, Home::class.java))
         }
         familyPhysician.setOnClickListener{
             val i=Intent(this@FindDoctor, DoctorDetails::class.java)

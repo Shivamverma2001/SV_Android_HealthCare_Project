@@ -52,8 +52,8 @@ class DoctorDetails : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_doctor_details)
-        tv=findViewById(R.id.textViewDDTitle)
-        back=findViewById(R.id.buttonDDBack)
+        tv=findViewById(R.id.textViewODTitle)
+        back=findViewById(R.id.buttonODBack)
         val bundle: Bundle? = intent.extras
         val title = bundle?.get("title")
         tv.text= title.toString()
@@ -89,7 +89,7 @@ class DoctorDetails : AppCompatActivity() {
             arrayOf("Line1", "Line2", "Line3", "Line4", "lines"),
             intArrayOf(R.id.line_a, R.id.line_b, R.id.line_c, R.id.line_d, R.id.line_e)
         )
-        val lst: ListView = findViewById(R.id.listViewLT)
+        val lst: ListView = findViewById(R.id.listViewOD)
         lst.adapter = simpleAdapter
         lst.setOnItemClickListener { parent, view, position, id ->
             val i = position // Get the clicked item position

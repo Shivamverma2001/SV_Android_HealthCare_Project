@@ -36,7 +36,7 @@
         app:layout_constraintVertical_bias="0.097" />
 
     <EditText
-        android:id="@+id/editTextRegUsername"
+        android:id="@+id/editTextLTDUsername"
         android:layout_width="355dp"
         android:layout_height="50dp"
         android:layout_marginTop="28dp"
@@ -58,7 +58,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
-        android:id="@+id/editTextRegEmail"
+        android:id="@+id/editTextLTDEmail"
         android:layout_width="355dp"
         android:layout_height="50dp"
         android:layout_marginTop="28dp"
@@ -77,10 +77,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.535"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegUsername" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextLTDUsername" />
 
     <EditText
-        android:id="@+id/editTextRegPassword"
+        android:id="@+id/editTextLTDPincode"
         android:layout_width="350dp"
         android:layout_height="51dp"
         android:layout_marginTop="28dp"
@@ -99,10 +99,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextLTDEmail" />
 
     <EditText
-        android:id="@+id/editTextRegConfirmPassword"
+        android:id="@+id/editTextLTDNumber"
         android:layout_width="350dp"
         android:layout_height="51dp"
         android:layout_marginTop="28dp"
@@ -121,7 +121,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextLTDPincode" />
 
     <Button
         android:id="@+id/buttonLogin"
@@ -132,7 +132,7 @@
         android:text="Register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegConfirmPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextLTDNumber" />
 
     <TextView
         android:id="@+id/textViewExistingUser"

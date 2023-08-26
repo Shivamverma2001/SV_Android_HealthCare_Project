@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back1"
-    tools:context=".BookAppointmentDetails">
+    tools:context=".BuyMedicineDetails">
     <TextView
         android:id="@+id/textViewDDName"
         android:layout_width="wrap_content"
@@ -25,7 +25,7 @@
         android:id="@+id/textPackageCart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lab Tests and Packages"
+        android:text="Buy Medicines"
         android:textColor="@color/yellowLight"
         android:textSize="20sp"
         android:textStyle="bold"

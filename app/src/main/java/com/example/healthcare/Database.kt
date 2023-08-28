@@ -87,7 +87,7 @@ class Database(context: Context?, name: String?, factory: SQLiteDatabase.CursorF
 
         db.close()
     }
-    fun getCartData(username: String, otype: String): ArrayList<String> {
+    fun getCartDataPackage(username: String, otype: String): ArrayList<String> {
         val arr = ArrayList<String>()
         val db = readableDatabase
         val str = arrayOfNulls<String>(2)
@@ -110,6 +110,27 @@ class Database(context: Context?, name: String?, factory: SQLiteDatabase.CursorF
 
         return arr
     }
+    fun getCartData(username: String, otype: String): HashMap<String, String> {
+    val cartData = HashMap<String, String>()
+    val db = readableDatabase
+    val str = arrayOf(username, otype)
+
+    val c = db.rawQuery("SELECT * FROM cart WHERE username = ? AND otype = ?", str)
+
+    if (c.moveToFirst()) {
+        do {
+            val product = c.getString(1)
+            val price = c.getString(2)
+            cartData[product] = price
+        } while (c.moveToNext())
+    }
+
+    c.close()
+    db.close()
+
+    return cartData
+}
+
     fun addOrder(username: String, fullname: String, address: String, contact: String, pincode: Int, date: String, time: String, price: Float, otype: String) {
         val cv = ContentValues()
         cv.put("username", username)

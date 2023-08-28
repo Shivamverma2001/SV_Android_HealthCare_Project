@@ -56,7 +56,7 @@ class BuyMedicine : AppCompatActivity() {
             val item = HashMap<String, String>()
             item["Line1"] = packages[i][0] // Change "line1" to "Line1"
             item["Line2"] = packages[i][1] // Change "line2" to "Line2"
-            item["Line3"] = packages[i][2] // Change "line3" to "Line3"
+            item["Line3"] = packages[i][2] // Change "l b7ine3" to "Line3"
             item["Line4"] = packages[i][3] // Change "line4" to "Line4"
             item["lines"] = "Cons Fees:" + packages[i][4] + "/-" // Change "line5" to "lines"
             list.add(item)

@@ -34,38 +34,37 @@ class CartBuyMedicine : AppCompatActivity() {
         val database = Database(this, "HealthCare", null, 1)
         var totalAmount = 0f
         val dbData = database.getCartData(username, "medicine")
-        Toast.makeText(this, dbData.toString(), Toast.LENGTH_LONG).show()
 
-        val packages = Array(dbData.size) { arrayOfNulls<String>(5) }
-
-        for (i in 0 until dbData.size) {
-            val arrData = dbData[i].toString()
+        val packages = mutableListOf<Array<String?>>()
+        for ((product, price) in dbData) {
             val regex = """\bPackage (\d+): (\w+(?:\s+\w+)*) (\d+)""".toRegex()
-
-            val matchResult = regex.find(arrData)
+            val matchResult = regex.find(product)
             if (matchResult != null && matchResult.groupValues.size >= 4) {
                 val packageNumber = matchResult.groupValues[1]
                 val packageName = matchResult.groupValues[2]
-                val price = matchResult.groupValues[3].toFloat()
+                val floatValue = price.toFloat()
 
-                packages[i] = arrayOf(packageNumber, packageName, "", "", price.toString())
-
-                totalAmount += price
+                packages.add(arrayOf(packageNumber, packageName, "", "", floatValue.toString()))
+                totalAmount += floatValue
             } else {
-                packages[i] = arrayOf("", arrData, "", "", "Cost: null/")
+                // Handle null price here
+                val priceText = price ?: "Cost: null/"
+                packages.add(arrayOf("", product, "", "","Cost: "+ priceText))
+                totalAmount +=priceText.toString().toInt()
             }
         }
 
         val list: ArrayList<HashMap<String, String>> = ArrayList()
-        for (i in 0 until packages.size) {
+        for (pkg in packages) {
             val item = HashMap<String, String>()
-            item["line1"] = packages[i]?.get(0) ?: ""
-            item["line2"] = packages[i]?.get(1) ?: ""
-            item["line3"] = packages[i]?.get(2) ?: ""
-            item["line4"] = packages[i]?.get(3) ?: ""
-            item["line5"] = packages[i]?.get(4) ?: ""
+            item["line1"] = pkg[0] ?: ""
+            item["line2"] = pkg[1] ?: ""
+            item["line3"] = pkg[2] ?: ""
+            item["line4"] = pkg[3] ?: ""
+            item["line5"] = pkg[4] ?: ""
             list.add(item)
         }
+
         val sa = SimpleAdapter(
             this,
             list,
